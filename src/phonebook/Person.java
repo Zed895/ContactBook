@@ -1,11 +1,15 @@
 package phonebook;
 
 import javafx.beans.property.SimpleStringProperty;
-        
+
+/**
+ * This is the Person POJO.
+ * Instances of this class represent the entries in the Contact Book and it is also used to create the records in the database.
+ */
 public class Person {
     
-    private final SimpleStringProperty firstName; //azok a POJO-k lesznek kepesek kommunikalni az adattablaval amik rendelkeznek SimpleStringProperty-vel
-                                                  //a sima String-ek helyett. Ez a tableview elemmel kompatibilis hordozo.
+    //SimpleStringProperty is used instead of String because it is compatible with TableView, listenable element
+    private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
     private final SimpleStringProperty email;
     private final SimpleStringProperty id;
@@ -30,9 +34,10 @@ public class Person {
         this.email = new SimpleStringProperty(email);
         this.id = new SimpleStringProperty(String.valueOf(id));
     }
-
+    
+    //non-primitive class variables, so function calls by the getters and setters are needed.
     public String getFirstName() {
-        return firstName.get(); //azert a firstName egy funkcioja van meghivva a getter es setternek mert ezek az osztalyvaltozok nem primitivek.
+        return firstName.get(); 
     }
     
     public void setFirstName(String fName){

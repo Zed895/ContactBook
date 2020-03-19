@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * This is the Person POJO.
  * Instances of this class represent the entries in the Contact Book and it is also used to create the records in the database.
+ * @author Zed
  */
 public class Person {
     

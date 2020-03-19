@@ -9,88 +9,95 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/** This class represents a database based on JDBC.
+ *
+ * @author Zed
+ */
 public class DB {
-    //final String JDBC_DRIVER = "org.apache.derby.jdbc.Embedded"; //nem hasznaltuk, mert alapbol Derby van a JDBC szamara.
+    //final String JDBC_DRIVER = "org.apache.derby.jdbc.Embedded"; //not needed, Derby is default
     final String URL = "jdbc:derby:sampleDB;create=true";
     final String USERNAME = "";
     final String PASSWORD = "";
     
-    //Letrehozzuk a kapcsolatot (hidat)
     Connection conn = null;
-    
     Statement createStatement = null;
     DatabaseMetaData dbmd = null;
     
     public DB() {
         
-        //Megprobaljuk eletre kelteni
         try {
             conn= DriverManager.getConnection(URL);
-            System.out.println("The connection exists.");
+            System.out.println("The database connection exists. ");
         } catch (SQLException ex) {
-            System.out.println("Problem with creating connection" + ex);
+            System.out.println("Problem with creating connection. " + ex);
         }
         
-        //Ha eletre kelt, csinalunk egy megpakolhato teherautot
         if(conn != null){
             try {
                 createStatement = conn.createStatement();
             } catch (SQLException ex) {
-                System.out.println("There is a problem with the createStatement (car)" + ex);
+                System.out.println("There is a problem with the createStatement " + ex);
             }
         }
         
-        //Megnezzuk, hogy ures-e az adatbazis. Megnezzuk letezik-e az adott adattabla.
         try {
-            dbmd = conn.getMetaData(); //Itt kerunk metaadatot a connenction-tol! Ez az egesz adatbazisra vonatkozik!
+            dbmd = conn.getMetaData();
         } catch (SQLException ex) {
-            System.out.println("There is a problem with the DatabaseMetaData (database description)" + ex);
+            System.out.println("There is a problem with the DatabaseMetaData (database description) " + ex);
         }
         
         try {
-            ResultSet rs1 = dbmd.getTables(null, "APP", "CONTACTS", null); //ratesszuk egy whiteboard-ra a metaadatot az egeszadatbazisrol.
-            if(!rs1.next()){ //csak vegig megy a whiteboard-on
+            ResultSet rs1 = dbmd.getTables(null, "APP", "CONTACTS", null);
+            if(!rs1.next()){
                 createStatement.execute("create table contacts (id INT not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),lastname varchar(20), firstname varchar(20), email varchar(30))");
             }
         } catch (SQLException ex) {
-            System.out.println("There is a problem with datatable creation" + ex);
+            System.out.println("There is a problem with datatable creation " + ex);
         }
     }
     
-    
+    /**
+     *
+     * @return an arrayList containing all of the Person POJOs
+     */
     public ArrayList<Person> getAllContacts(){
         String sql = "select * from contacts";
-        ArrayList<Person> users = null; //ha hiba van akkor ezt a null-t kapja vissza a meghivo, tehat tudja hogy hiba
+        ArrayList<Person> users = null; //if you receive null, then there is az error!
         try {
             ResultSet rs = createStatement.executeQuery(sql); 
-            users = new ArrayList<>(); //itt nincs hiba csak ureset kap vissza a meghivo, de nem null-t igy tudja, hogy minden oke, csak ures.
+            users = new ArrayList<>(); //if you receive only this, then there is no error but an empty database
             while (rs.next()){ 
-                Person actualPerson = new Person(rs.getInt("id"), rs.getString("lastname"), rs.getString("firstname"), rs.getString("email")); //igy a visszaerkezo adatokbol
-                                                                                                //letrehozol egy uj Person-t a konstruktor segitsegevel.
-                                                     //azert kell egy letrehozni, hogy legyen id-ja (megha a table-be nem is kell) mert update-kor kell az id.
-                users.add(actualPerson); //hozzaadjuk a listahoz
+                //POJO returns to the Controller with ID by now
+                Person actualPerson = new Person(rs.getInt("id"), rs.getString("lastname"), rs.getString("firstname"), rs.getString("email"));
+                users.add(actualPerson);
             }
         } catch (SQLException ex) {
-            System.out.println("There is a problem with reading users" + ex);
+            System.out.println("There is a problem with reading table contacts " + ex);
         }
-        
-        return users; //barki hasznalhatja a listat
+        return users;
     }
     
+    /**
+     *
+     * @param person
+     */
     public void addContact(Person person){
         try {
-            String sgl = "insert into contacts (lastname, firstname, email) values (?,?,?)";//ha minden oszlophoz kapna adatot, akkor nem kellene explicit
-                                                                                            //megmondani, hogy (lastname, firstname, email).
-            PreparedStatement preparedStatement = conn.prepareStatement(sgl);
+            String sgl = "insert into contacts (lastname, firstname, email) values (?,?,?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sgl); //because type checking is needed from here
             preparedStatement.setString(1, person.getLastName());
             preparedStatement.setString(2, person.getFirstName());
             preparedStatement.setString(3, person.getEmail());
             preparedStatement.execute();
         } catch (SQLException ex) {
-            System.out.println("There is a problem with adding contacts" + ex);
+            System.out.println("There is a problem with inserting contacts" + ex);
         }
     }
     
+    /**
+     *
+     * @param person
+     */
     public void updateContact(Person person){
         try {
             String sgl = "update contacts set lastname = ?, firstname = ?, email = ? where id = ?";
@@ -105,6 +112,10 @@ public class DB {
         }
     }
     
+    /** This method removes a contact from the database via SQL
+     *
+     * @param person The entry which should be removed
+     */
     public void removeContact(Person person){
         try {
             String sgl = "delete from contacts where id = ?";
@@ -112,7 +123,7 @@ public class DB {
             preparedStatement.setInt(1, Integer.parseInt(person.getId()));
             preparedStatement.execute();
         } catch (SQLException ex) {
-            System.out.println("There is a problem with deleting contact" + ex);
+            System.out.println("There is a problem with deleting contact " + ex);
         }
     }
 }

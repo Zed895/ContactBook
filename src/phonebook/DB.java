@@ -9,9 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/** This class represents a database based on JDBC.
- *
- * @author Zed
+/**
+ * This class represents a database based on JDBC.
  */
 public class DB {
     //final String JDBC_DRIVER = "org.apache.derby.jdbc.Embedded"; //not needed, Derby is default
@@ -57,8 +56,8 @@ public class DB {
     }
     
     /**
-     *
-     * @return an arrayList containing all of the Person POJOs
+     * Select everything from the contacts table of the database.
+     * @return an arrayList containing all of the Person POJOs.
      */
     public ArrayList<Person> getAllContacts(){
         String sql = "select * from contacts";
@@ -78,8 +77,8 @@ public class DB {
     }
     
     /**
-     *
-     * @param person
+     * Insert a person into the contacts table of the database via SQL. 
+     * @param person received person will be inserted into the DB as a new record.
      */
     public void addContact(Person person){
         try {
@@ -95,8 +94,8 @@ public class DB {
     }
     
     /**
-     *
-     * @param person
+     * Updates a record in the contacts table of the database via SQL.
+     * @param person the record representing this person will be updated.
      */
     public void updateContact(Person person){
         try {
@@ -112,9 +111,9 @@ public class DB {
         }
     }
     
-    /** This method removes a contact from the database via SQL
-     *
-     * @param person The entry which should be removed
+    /** 
+     * This method removes a contact from the contacts table of the database via SQL.
+     * @param person The entry which should be deleted.
      */
     public void removeContact(Person person){
         try {

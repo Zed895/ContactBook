@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="anchor" fx:id="anchor" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactbook.ViewController">
+  <children>
+        <Label layoutX="347.0" layoutY="14.0" minHeight="16" minWidth="69" prefHeight="21.0" prefWidth="139.0" text="ContactBook">
+            <font><Font name="Mongolian Baiti" size="19.0" /></font>
+        </Label>
+        <SplitPane id="mainSplit" fx:id="mainSplit" dividerPositions="0.25" layoutY="51.0" prefHeight="604.0" prefWidth="780.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                        <StackPane id="menuPane" fx:id="menuPane" layoutY="87.0" prefHeight="602.0" prefWidth="159.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+            
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                        <Pane id="exportPane" fx:id="exportPane" layoutX="108.0" layoutY="132.0" prefHeight="602.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                                <Button id="exportButton" fx:id="exportButton" layoutX="243.0" layoutY="276.0" mnemonicParsing="false" onAction="#exportList" text="Save to PDF" />
+                                <TextField id="inputExportName" fx:id="inputExportName" layoutX="174.0" layoutY="230.0" prefHeight="25.0" prefWidth="218.0" />
+                                <Label layoutX="210.0" layoutY="75.0" text="Export to PDF">
+                                    <font><Font size="24.0" /></font>
+                                </Label>
+                                <Label layoutX="242.0" layoutY="184.0" text="File name:">
+                                    <font><Font size="18.0" /></font>
+                                </Label>
+                          </children>
+                        </Pane>
+                        <Pane id="contactPane" fx:id="contactPane" layoutX="118.0" layoutY="142.0" prefHeight="602.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                                <TableView id="table" fx:id="table" editable="true" layoutY="14.0" prefHeight="445.0" prefWidth="576.0">
+                                    <placeholder>
+                                        <Label text="There are no data." />
+                                    </placeholder>
+                                    <columns></columns>
+                                    <columns></columns>
+                                </TableView>
+                                    <TextField id="inputLastname" fx:id="inputLastname" layoutX="133.0" layoutY="474.0" />
+                                    <TextField id="inputFirstname" fx:id="inputFirstname" layoutX="133.0" layoutY="511.0" />
+                                    <TextField id="inputEmail" fx:id="inputEmail" layoutX="133.0" layoutY="552.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="476.0" prefHeight="17.0" prefWidth="107.0" text="Surname:" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="28.0" layoutY="513.0" prefHeight="17.0" prefWidth="93.0" text="Given name:" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="556.0" prefHeight="17.0" prefWidth="107.0" text="E-mail:" />
+                                    <Button id="addNewContactButton" fx:id="addNewContactButton" layoutX="346.0" layoutY="511.0" mnemonicParsing="false" onAction="#addContact" text="Add new contact" />
+                          </children>
+                        </Pane>
+                  </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+  </children>
+</AnchorPane>

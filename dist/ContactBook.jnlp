@@ -8,15 +8,10 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ContactBook.jar" size="42440" download="eager" />
-    <jar href="lib\derby.jar" size="2766479" download="eager" />
-    <jar href="lib\derbyclient.jar" size="576624" download="eager" />
-    <jar href="lib\derbynet.jar" size="248898" download="eager" />
-    <jar href="lib\itextpdf-5.5.5.jar" size="2164148" download="eager" />
+    <jar href="ContactBook.jar" size="42488" download="eager" />
+    <jar href="lib/derby.jar" size="3230946" download="eager" />
+    <jar href="lib/itextpdf-5.5.5.jar" size="2164148" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ContactBook" >
-    <param name="requiredFXVersion" value="8.0+"/>
-  </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="phonebook.PhoneBook"  name="ContactBook" />
+  <jfx:javafx-desc  width="800" height="600" main-class="contactbook.ContactBook"  name="ContactBook" />
   <update check="always"/>
 </jnlp>

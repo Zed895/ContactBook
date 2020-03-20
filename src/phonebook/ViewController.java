@@ -31,7 +31,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
-/**This is the Controller
+/**
+ * This is the Controller
  * @author Zed
  */
 public class ViewController implements Initializable {
@@ -99,6 +100,9 @@ public class ViewController implements Initializable {
     //ObservableList is used as it is listenable static element. This data will receive an arrayList with Persons from the DB
     private final ObservableList<Person> data = FXCollections.observableArrayList();
     
+    /**
+     * This method handles the entries and put them onto the table.
+     */
     public void setTableData(){
         TableColumn lastNameCol = new TableColumn("Surname");
         lastNameCol.setMinWidth(130);
@@ -193,6 +197,9 @@ public class ViewController implements Initializable {
         
     }
     
+    /**
+     * This method creates the menu on the left pane.
+     */
     private void setMenuData() {
         TreeItem<String> treeItemRoot1 = new TreeItem<>("Menu");
         TreeView<String> treeView = new TreeView<>(treeItemRoot1);

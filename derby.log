@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Tue Oct 01 15:09:34 CEST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016d-8770-b773-000006653108 
-on database directory C:\Users\Zed\Documents\NetBeansProjects\ContactBook\sampleDB with class loader sun.misc.Launcher$AppClassLoader@42a57993 
-Loaded from file:/C:/Users/Zed/Documents/NetBeansProjects/ContactBook/dist/run1944522437/lib/derby.jar
+Fri Mar 20 10:12:52 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0170-f737-760c-000005a4b870 
+on database directory /home/sysadmin/NetBeansProjects/ContactBook/contactDB with class loader sun.misc.Launcher$AppClassLoader@7f31245a 
+Loaded from file:/home/sysadmin/NetBeansProjects/ContactBook/dist/run586815807/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_211-b12
-user.dir=C:\Users\Zed\Documents\NetBeansProjects\ContactBook
-os.name=Windows 7
+java.runtime.version=1.8.0_242-8u242-b08-1~deb9u1-b08
+user.dir=/home/sysadmin/NetBeansProjects/ContactBook
+os.name=Linux
 os.arch=amd64
-os.version=6.1
+os.version=4.9.0-12-amd64
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

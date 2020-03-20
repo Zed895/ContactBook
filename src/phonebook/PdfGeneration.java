@@ -15,14 +15,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import javafx.collections.ObservableList;
 
-/**Pdf creator class.
+/**
+ * PDF creator class.
  * Instantiate it if you want to create a printable version of a list
- * @author Zed
  */
 public class PdfGeneration {
-    /** This method creates a pdf document containing the entries of the ContactBook.
-     @param fileName the name of the file
-     @param data the list containing the entries.
+    /**
+     * This method creates a PDF document containing the entries of the ContactBook.
+     * @param fileName the desired name of the PDF file
+     * @param data the list containing the entries.
      */
     public void pdfGeneration(String fileName, ObservableList<Person> data) {
         Document document = new Document();
